@@ -3,7 +3,7 @@ name: Release Pipeline
 on:
   push: {}
 
-push:
+jobs:
   release-pipeline:
     name: Release Pipeline\
     runs-on: windows-latest
