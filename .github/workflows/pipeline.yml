@@ -26,14 +26,21 @@ jobs:
       - name: Build Release
         run: dotnet publish -c Release src\DevOpsDaysTasks.UI\ -o DevOpsDaysTasks /p:Version=1.0.0 /p:VersionName=GettingClean_1.0.0
 
+      - name: Checkout.External.Repo
+        uses: actions/checkout@v4
+        with:
+          repository: martinzimmmermann/DevOpsDaysGraz2025-ExternalFiles
+          path: ExternalFiles
+
       - name: Copy Workshop.Material
         run: |
           mkdir -p DevOpsDaysTasks/Templates
-          cp workshop_material/default-tasks.xml DevOpsDaysTasks/Templates/
-          cp workshop_material/Help.pdf DevOpsDaysTasks/Help.pdf
+          mkdir -p DevOpsDaysTasks/Help
+          cp ExternalFiles/default-tasks.xml DevOpsDaysTasks/Templates/
+          cp ExternalFiles/Help.pdf DevOpsDaysTasks/Help/
 
       - name: Create.Cert
-        run:
+        run: |
           $base64 = "${{ secrets.DEVOPSDAYS2025CERTIFICATE }}"
           $content = [System.Convert]::FromBase64String($base64)
           Set-Content ${{ env.CERT_NAME }} -Value $content -AsByteStream
