@@ -41,6 +41,21 @@ jobs:
         run: Compress-Archive -Path DevOpsDaysTasks\* -DestinationPath DevOpsDaysTasks.zip
         shell: powershell
 
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: DevOpsDaysTasks
+          path: DevOpsDaysTasks.zip
+
+
+#problem: hardcoded release version
+
+#problem: cert and passwort is in the repo
+
+#problem: we do not have a release
+
+#problem: we dont want to use the workshop folder
+# Steps to create a new release:
 
 # 1. Checkout the most recent commit
 # 2. Run all tests in the `DevOpsDaysTasks.Core.Tests` project (`dotnet test .\src\DevOpsDaysTasks.Core.Tests`)
