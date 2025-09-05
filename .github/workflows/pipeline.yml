@@ -66,11 +66,19 @@ jobs:
         run: Compress-Archive -Path DevOpsDaysTasks\* -DestinationPath DevOpsDaysTasks.zip
         shell: powershell
 
-      - name: Upload Artifact
+      - name: Upload.Artifact
         uses: actions/upload-artifact@v4
         with:
           name: DevOpsDaysTasks
           path: DevOpsDaysTasks.zip
+
+      - name: Release.This.Dope.Shit
+        uses: softprops/action-gh-release@v2
+        if: ${{ inputs.version }}
+        with:
+          name: DevOpsDaysTasks - ${{ inputs.versionName }}
+          tag_name: ${{ inputs.version }}
+          files: DevOpsDaysTasks.zip
 
 
 #problem: hardcoded release version
