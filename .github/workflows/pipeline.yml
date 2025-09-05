@@ -16,4 +16,4 @@ jobs:
           dotnet-version: '8.0.x'
 
       - name: Run Core.Test
-        run: dotnet test .\src\DevOpsDaysGraz2025.Core.Tests
+        run: dotnet test .\src\DevOpsDaysTasks.Core.Tests
