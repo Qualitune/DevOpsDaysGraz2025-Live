@@ -2,6 +2,16 @@ name: Release Pipeline
 
 on:
   push: {}
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Release version'
+        required: true
+        type: string
+      versionName:
+        description: 'Release version name'
+        required: true
+        type: string
 
 jobs:
   release-pipeline:
@@ -29,7 +39,7 @@ jobs:
       - name: Checkout.External.Repo
         uses: actions/checkout@v4
         with:
-          repository: martinzimmmermann/DevOpsDaysGraz2025-ExternalFiles
+          repository: martinzimmermann/DevOpsDaysGraz2025-ExternalFiles
           path: ExternalFiles
 
       - name: Copy Workshop.Material
